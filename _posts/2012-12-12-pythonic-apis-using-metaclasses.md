@@ -16,6 +16,7 @@ The Problem
 
 My problem was that I had database models but the api for using them was not as clean as I would have liked.
 To illustrate this situation, lets take the simple example of a user class, with a list standing in for our database and storing all of the users that are created: 
+**Edit:** There seemed to be some confusion here. The following example is meant to illustrate the use of a metaclass but is not a real world example. The list used in the class is meant to approximate a database connection, in real life the `User` class would probably have some `get_all()` method over which you would iterate.
 
 {% highlight python %}
 class User(object):
