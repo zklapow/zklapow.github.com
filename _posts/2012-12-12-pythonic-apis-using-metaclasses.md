@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Pythonic API's using Metaclasses"
+title: "Pythonic API's Using Metaclasses"
 description: ""
 category: python
 tags: [python, object-oriented, programming]
@@ -84,7 +84,7 @@ Of course `builtins.type` has no method `__iter__` and thus our loop throws an e
 Enter Metaclasses
 =================
 
-This problem can be solved by changing the type of the class `User` to something other than `buitlins.type`. This can be achieved using what is known as a metaclass.(It should be noted that the following code will only work for python 3 as the way metaclasses are handled has been changed)
+This problem can be solved by changing the type of the class `User` to something other than `builtins.type`. This can be achieved using what is known as a metaclass.(It should be noted that the following code will only work for python 3 as the way metaclasses are handled has been changed)
 
 ### What is a Metaclass?
 
@@ -153,6 +153,6 @@ All of the same things can be achieved in python 2, but the syntax for doign so 
 Conclusion
 ==========
 
-Hopefully all this talk of classes of classes and types of types hasn't twisted your brain up to much. I have demonstrated only one example of the usefullness of metaclasses here with the `__iter__` method. Metaclasses can be extremely powerful tools in customizing the behavior of class objects in python and can make APIs significantly more intuitive if used properly!
+Hopefully all this talk of classes of classes and types of types hasn't twisted your brain up to much. I have demonstrated only one example of the usefullness of metaclasses here with the `__iter__` method. Metaclasses can be extremely powerful tools in customizing the behavior of class objects in python and can make APIs significantly more intuitive if used properly! By changing the type of the class itself we enable our classes to become much mur useful than simple object creators. If you want to see a great example of these concepts in action, check our [Django's ORM](https://docs.djangoproject.com/en/dev/topics/db/models/), it makes heavy use of metaclasses in order to provide its intuitive API, and inspired me to write this post!
 
 <!-- more end -->
