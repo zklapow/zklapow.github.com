@@ -50,7 +50,7 @@ This is all well and good, however, what what I really wanted the ability to do 
 ...     print(user)
 {% endhighlight %}
 
-At first the solution to this problem seems simple simple define a classmethod `__iter__` like so:
+At first the solution to this problem seems simple. Just define a classmethod `__iter__` like so:
 {% highlight python %}
     @classmethod
     def __iter__(cls):
@@ -61,7 +61,7 @@ At first the solution to this problem seems simple simple define a classmethod `
 Of Types and Classes
 ====================
 
-Why doesn't simply defining `__iter__` as a classmethod work? The simple explanation is that it is never being called. What we have to remeber here is that everything in python is an object *including classes*. So while sally and bob are instances of `User`, `User` itself is in fact an intance of `type`.
+Why doesn't simply defining `__iter__` as a classmethod work? The simple explanation is that it is never being called. What we have to remeber here is that everything in python is an object *including classes*. So while sally and bob are instances of `User`, `User` itself is in fact an instance of `type`.
 
 {% highlight python %}
 >>> type(sally)
@@ -107,11 +107,11 @@ builtins.type
 builtins.type
 {% endhighlight %}
 
-So `type` can be thought of as the universal metaclass, it is the class which creates all other classes. Thus, a metaclass can be thought of as simply a class which creates other classes. The intances of a metaclass are classes, unlike normal classes whose instances are simply normal objects.
+So `type` can be thought of as the universal metaclass, it is the class which creates all other classes. Thus, a metaclass can be thought of as simply a class which creates other classes. The instances of a metaclass are classes, unlike normal classes whose instances are simply normal objects.
 
 ### So What?
 
-The problem we were having earlier was that when we attempted to iterate over our class we were in fact attempting to iterate over an inatnce of `type`. We now know that `type` is simply the metaclass of `User`. Luckily, python lets us define our own metaclasses. We can now rewrite the `User` class like so:
+The problem we were having earlier was that when we attempted to iterate over our class we were in fact attempting to iterate over an instance of `type`. We now know that `type` is simply the metaclass of `User`. Luckily, python lets us define our own metaclasses. We can now rewrite the `User` class like so:
 {% highlight python %}
 class IterMeta(type):
     def __init__(cls, name, bases, dict):
@@ -134,7 +134,7 @@ class User(object, metaclass=IterMeta):
         return "User('%s', '%s')" % (self.name, self.email)
 {% endhighlight %}
 
-I have indcluded the print in the metaclasses `__init__` to demonstrate that the first argument that gets passed to all metaclass methods(`cls` here) is in fact jus the instance of the metaclass, which is our class `User`.
+I have included the print in the metaclasses `__init__` to demonstrate that the first argument that gets passed to all metaclass methods(`cls` here) is in fact just the instance of the metaclass, which is our class `User`.
 
 Using this new version of the `User` class our earlier example now works:
 {% highlight python %}
@@ -149,7 +149,7 @@ User('bob', 'bob@gmail.com')
 
 ### A Note About Python 2
 
-All of the same things can be achieved in python 2, but the syntax for doign so is slightly different. Simply set the `__metaclass__` class attribute to set the metaclass in python 2. This even has the slight added advantage of allowing the metaclass to be defined within the class it is metaclassing.
+All of the same things can be achieved in python 2, but the syntax for doing so is slightly different. Simply set the `__metaclass__` class attribute to set the metaclass in python 2. This even has the slight added advantage of allowing the metaclass to be defined within the class it is metaclassing.
 
 Conclusion
 ==========
